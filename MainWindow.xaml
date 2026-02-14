@@ -1,0 +1,92 @@
+﻿<Window x:Class="VolunteerManagementSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:VolunteerManagementSystem"
+        xmlns:models="clr-namespace:VolunteerManagementSystem.Models"
+        xmlns:services="clr-namespace:VolunteerManagementSystem.Services"
+        xmlns:windows="clr-namespace:VolunteerManagementSystem.Windows"
+        Title="Система управления волонтёрами" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Волонтёры">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <Button Content="Добавить волонтёра" Click="AddVolunteer_Click" Margin="5"/>
+                        <Button Content="Импорт волонтёров" Click="ImportVolunteers_Click" Margin="5"/>
+                        <Button Content="Изменить статус" Click="ChangeVolunteerStatus_Click" Margin="5"/>
+                    </StackPanel>
+
+
+                    <DataGrid x:Name="VolunteersDataGrid" Grid.Row="1" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="*"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*"/>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding MiddleName}" Width="*"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Мероприятия">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <Button Content="Добавить мероприятие" Click="AddEvent_Click" Margin="5"/>
+                        <Button Content="Импорт мероприятий" Click="ImportEvents_Click" Margin="5"/>
+                        <Button Content="Изменить статус" Click="ChangeEventStatus_Click" Margin="5"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="EventsDataGrid" Grid.Row="1" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                            <DataGridTextColumn Header="Дата начала" Binding="{Binding StartDate, StringFormat=dd.MM.yyyy}" Width="Auto"/>
+                            <DataGridTextColumn Header="Дата окончания" Binding="{Binding EndDate, StringFormat=dd.MM.yyyy}" Width="Auto"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Регистрации">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <Button Content="Зарегистрировать" Click="RegisterForEvent_Click" Margin="5"/>
+                        <Button Content="Статистика" Click="ShowStatistics_Click" Margin="5"/>
+                        <Button Content="Экспорт всех" Click="ExportAllRegistrations_Click" Margin="5"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="RegistrationsDataGrid" Grid.Row="1" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Волонтёр" Binding="{Binding VolunteerName}" Width="*"/>
+                            <DataGridTextColumn Header="Мероприятие" Binding="{Binding EventName}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
